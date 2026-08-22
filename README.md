@@ -4,7 +4,6 @@
   <img src="https://img.shields.io/badge/Windows%2010%2B-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Windows" />
   <img src="https://img.shields.io/badge/MinGW-00447F?style=flat-square" alt="MinGW" />
   <img src="https://img.shields.io/badge/MSVC-5C2D91?style=flat-square&logo=visualstudio&logoColor=white" alt="MSVC" />
-  <img src="https://img.shields.io/github/stars/cmdpe/LiangWenTray?style=flat-square&logo=github" alt="stars" />
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="license" />
 </p>
 
