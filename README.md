@@ -1,4 +1,5 @@
 <p align="center">
+  <img src="https://img.shields.io/badge/DeepSeek-5786FE?style=flat-square&logo=deepseek&logoColor=white" alt="DeepSeek" />
   <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=cplusplus&logoColor=white" alt="C++" />
   <img src="https://img.shields.io/badge/Win32%20API-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Win32 API" />
   <img src="https://img.shields.io/badge/Windows%2010%2B-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Windows" />
