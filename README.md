@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/DeepSeek-5786FE?style=flat-square&logo=deepseek&logoColor=white" alt="DeepSeek" />
   <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=cplusplus&logoColor=white" alt="C++" />
   <img src="https://img.shields.io/badge/Win32%20API-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Win32 API" />
   <img src="https://img.shields.io/badge/Windows%2010%2B-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Windows" />
   <img src="https://img.shields.io/badge/MinGW-00447F?style=flat-square" alt="MinGW" />
   <img src="https://img.shields.io/badge/MSVC-5C2D91?style=flat-square&logo=visualstudio&logoColor=white" alt="MSVC" />
+  <img src="https://img.shields.io/github/stars/cmdpe/LiangWenTray?style=flat-square&logo=github" alt="stars" />
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="license" />
 </p>
 
@@ -23,8 +23,9 @@
 | 梁文峰 | 09:00 – 12:00 | 上午工作时间 |
 | 梁文峰 | 14:00 – 18:00 | 下午工作时间 |
 | 梁文谷 | 其余时间 | 午休 / 夜间时段 |
+| 梁文谷 | 周六 / 周日全天 | 周末不区分时段，全天梁文谷 |
 
-> 判断规则：`09:00 ≤ t < 12:00` 或 `14:00 ≤ t < 18:00` 为梁文峰时期，其余时间为梁文谷时期。
+> 判断规则：`09:00 ≤ t < 12:00` 或 `14:00 ≤ t < 18:00` 为梁文峰时期，其余时间为梁文谷时期；**周末（周六 / 周日）自动识别，全天为梁文谷时期**。
 
 ### 托盘图标
 
@@ -36,6 +37,7 @@
 
 - 首次启动时弹出当前时期气泡
 - 时期切换瞬间弹出气泡，显示当前北京时间与时期（如「现在是 12:00，梁文谷时期」）
+- 进入周末时弹出提示「今天是星期六，全天为梁文谷时期」（星期自动匹配）
 - 气泡最长展示 10 秒，后台每秒检查一次状态
 
 ### 开机自启
@@ -44,6 +46,8 @@
   - `LiangWenTray.exe --install` 注册自启
   - `LiangWenTray.exe --uninstall` 取消自启
 - 自启项写入当前用户注册表 `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`
+- 写入后自动回读校验，并在弹窗中显示实际写入的启动命令，方便排查
+- 新增 `--check` 参数可随时查看当前自启状态与启动命令
 
 ### 右键菜单
 
@@ -59,7 +63,7 @@
 ## 项目结构
 
 ```
-├── main.cpp              # 主程序（Win32 托盘应用，单文件）
+├── LiangWenTray.cpp      # 主程序（Win32 托盘应用，单文件）
 ├── 1.ico                 # 梁文峰时期托盘图标
 ├── 2.ico                 # 梁文谷时期托盘图标
 └── LiangWenTray.exe      # 编译产物
@@ -75,13 +79,13 @@
 ### 编译（MinGW）
 
 ```bash
-g++ main.cpp -o LiangWenTray.exe -mwindows -luser32 -lshell32 -ladvapi32
+g++ LiangWenTray.cpp -o LiangWenTray.exe -mwindows -luser32 -lshell32 -ladvapi32
 ```
 
 ### 编译（MSVC）
 
 ```bat
-cl main.cpp /EHsc /link user32.lib shell32.lib advapi32.lib /SUBSYSTEM:WINDOWS
+cl LiangWenTray.cpp /EHsc /link user32.lib shell32.lib advapi32.lib /SUBSYSTEM:WINDOWS
 ```
 
 ### 运行
@@ -95,6 +99,9 @@ LiangWenTray.exe --install
 
 # 取消开机自启
 LiangWenTray.exe --uninstall
+
+# 查看当前自启状态（诊断用）
+LiangWenTray.exe --check
 ```
 
 > 注意：`1.ico` 与 `2.ico` 需与 exe 放在同一目录。
@@ -108,4 +115,4 @@ LiangWenTray.exe --uninstall
 
 ## 版本
 
-- v1.0.0
+- v1.0.1（新增周末全天梁文谷规则、修复并增强开机自启）
